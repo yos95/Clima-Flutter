@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 <key>NSLocationWhenInUseUsageDescription</key>
-<string>This app needs access to location when open.</string>
+<string>Cette application a besoin d'accéder à la localisation lorsqu'elle est ouverte.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
