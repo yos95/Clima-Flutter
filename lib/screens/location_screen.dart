@@ -2,6 +2,7 @@ import 'package:clima/screens/city_screen.dart';
 import 'package:clima/services/weather.dart';
 import 'package:clima/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 class LocationScreen extends StatefulWidget {
   LocationScreen({this.locationWeather});
@@ -11,6 +12,8 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
+  var logger = Logger();
+
   WeatherModel weather = WeatherModel();
   var temperature;
   var weatherIcon;
@@ -21,6 +24,8 @@ class _LocationScreenState extends State<LocationScreen> {
   void initState() {
     super.initState();
     updateUi(widget.locationWeather);
+    logger.d('page location');
+    logger.d('val recu : ${widget.locationWeather}');
   }
 
   void updateUi(dynamic weatherData) {
@@ -31,9 +36,11 @@ class _LocationScreenState extends State<LocationScreen> {
         weatherMessage = 'Impossible de récupérer la météo';
         cityName = '';
         a = '';
+        logger.d('updateUI null');
+
         return;
       }
-      double temp = weatherData['main']['temp'];
+      var temp = weatherData['main']['temp'];
       temperature = temp.toInt();
       weatherMessage = weather.getMessage(temperature);
       var condition = weatherData['weather'][0]['id'];
@@ -46,6 +53,7 @@ class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
